@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RecourceList from './recourceList';
 
 const App = () => {
   const[recource, setRecource] = useState('posts');
@@ -9,7 +10,7 @@ const App = () => {
       <button onClick={() => setRecource('posts')}> posts </button>
       <button onClick={() => setRecource('todos')}> todos </button>
      </div>
-     {recource}
+     <RecourceList recource={recource} />
     </div>
   );
 }
