@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const  RecourceList = (props) => {
-
+const useRecources = (recource) => {
   const [ recources, setRecources ] = useState( [] );
 
   const fetchRecource = async (recource) => {
@@ -11,8 +10,14 @@ const  RecourceList = (props) => {
   }
 
   useEffect(() => {
-    fetchRecource(props.recource)
-  }, [props.recource])
+    fetchRecource(recource)
+  }, [recource])
+
+  return recources;
+}
+
+const  RecourceList = (props) => {
+  const recources = useRecources(props.recource);
 
   return (
     <ul>
