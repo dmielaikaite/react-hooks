@@ -1,28 +1,24 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-class RecourceList extends Component {
-  state = { recources: [] }
+const  RecourceList = (props) => {
 
-  async componentDidMount() {
-    const response = await axios.get(`https://jsonplaceholder.typicode.com/${this.props.recource}`);
-    this.setState({ recources: response.data});
+  const [ recources, setRecources ] = useState( [] );
+
+  const fetchRecource = async (recource) => {
+    const response = await axios.get(`https://jsonplaceholder.typicode.com/${recource}`);
+    setRecources(response.data);
   }
 
-  async componentDidUpdate(pervProps) {
-    if(pervProps.recource !== this.props.recource){
-      const response = await axios.get(`https://jsonplaceholder.typicode.com/${this.props.recource}`);
-      this.setState({ recources: response.data});
-    }
-  }
+  useEffect(() => {
+    fetchRecource(props.recource)
+  }, [props.recource])
 
-  render(){
-    return(
-      <div>
-        {this.state.recources.length}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {recources.length}
+    </div>
+  );
 }
 
 export default RecourceList;
