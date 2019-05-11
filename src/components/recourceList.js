@@ -15,9 +15,9 @@ const  RecourceList = (props) => {
   }, [props.recource])
 
   return (
-    <div>
-      {recources.length}
-    </div>
+    <ul>
+      {recources.map(record => <li key={record.id}>{record.title}</li>)}
+    </ul>
   );
 }
 
